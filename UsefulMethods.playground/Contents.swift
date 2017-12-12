@@ -32,7 +32,7 @@ class Folder: Objects{
     }
 }
 var item2 = [item]()
-item2.append(item(name:"我", date:"11/01/2017"))
+item2.append(item(name:"我", date:"11/5/2017"))
 item2.append(item(name:"小", date:"30/05/2017"))
 // compare String
 let sortItem2 = item2.sorted { (s1, s2) -> Bool in
@@ -42,7 +42,9 @@ print(sortItem2[0].name)
 // compare date
 func testSort(target: Array<item>?, target2: Array<Folder>?) -> Array<item>{
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "dd/mm/yyyy"
+    dateFormatter.locale = NSLocale.current
+    dateFormatter.dateStyle = .short
+    dateFormatter.timeStyle = .none
     
     return target!.sorted { (s1, s2) -> Bool in
         return dateFormatter.date(from: s1.date)?.compare(dateFormatter.date(from: s2.date)!)  == .orderedAscending
